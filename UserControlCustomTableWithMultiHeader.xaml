@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="ASRVGMainApp.WPF.UserControlCustomTableWithMultiHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <!--Cтиль для рамки заголовка таблицы-->
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="Cornsilk" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <!--Кастомная таблица-->
+        <!--<ScrollViewer  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" >
+            <StackPanel>-->
+                <!--Кастомный заголовок таблицы-->
+                <!--<Grid Name="CustomHeader" Background="Cornsilk">
+                </Grid>-->
+
+                <!--Таблица с результатами выборки-->
+                <!--<DataGrid x:Name="MainTable"  AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" HorizontalAlignment="Left" Background="Cornsilk">
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>-->
+
+        <StackPanel>
+            <!--Кастомный заголовок таблицы-->
+            <Grid>
+                <ScrollViewer Name="HeaderScroll" HorizontalScrollBarVisibility="Hidden" CanContentScroll="True" VerticalScrollBarVisibility="Disabled">
+                    <Grid Name="CustomHeader"></Grid> 
+                </ScrollViewer>
+
+                <Grid Name="FrozenHeader"></Grid>
+            </Grid>
+
+            <!--Таблица с результатами выборки-->
+            <DataGrid ScrollViewer.ScrollChanged ="MainTable_ScrollChanged"  x:Name="MainTable"  AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" IsReadOnly="True" HeadersVisibility="Column" HorizontalAlignment="Left">
+            </DataGrid>
+        </StackPanel>      
+    </Grid>
+</UserControl>
